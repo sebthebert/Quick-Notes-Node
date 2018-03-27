@@ -137,3 +137,117 @@ app.delete("/path", function(req, res) {
 
 app.listen(3000);
 ```
+
+## WebSockets
+
+Server:
+```node
+var WebSocketServer = require("ws").Server;
+
+var wss = new WebSocketServer({ port: 3000 });
+wss.on("connection", function(ws) {
+  ws.on("message", function(message) {
+    if (message === 'exit')
+    {
+      ws.close();
+    }
+    else
+    {
+      wss.clients.forEach(function(client) {
+        client.send(message);
+      });
+    }
+  });
+  
+  ws.send('welcome');
+});
+```
+
+Client:
+```node
+var ws = new WebSocket("ws://localhost:3000");
+
+ws.onopen = function() {
+};
+
+ws.onclose = function() {
+};
+
+ws.onmessage = function(payload) {
+   #payload.data
+};
+```
+
+## Testing Debugging
+
+### Mocha & Chai
+
+```
+npm install chai --save-dev
+```
+
+Run in 'test' directory
+```node
+var expect = require("chai").expect;
+var myTools = require("../lib/tools");
+
+describe("myTools", function() {
+
+  describe("myFunc()", function() {
+    it("should do something", function() {
+      var results = tools.myFunc(params);
+      expect(results).to.equal(something);
+    });
+  });
+  
+  describe("myFunc2()", function() {
+  
+    this.timeout(5000) #2000 ms by default
+    it("should do something again", function(done) {
+      var results = tools.myFunc(params);
+      expect(results).to.be.ok;
+      done();
+    });
+  });
+  
+});
+```
+
+
+### Nock
+
+Nock to mock
+
+```
+npm install nock --save-dev
+```
+
+```
+var nock = require("nock");
+
+before(function() {
+  nock(url)
+    .get(path)
+    .reply(200, "Mock");
+});
+
+
+### Rewire
+
+Mocking data
+```
+npm install rewire --save-dev
+```
+
+```
+var rewire = require("rewire");
+
+var data = rewire("../lib/...");
+
+beforeEach(function() {
+  this.testData = [ 
+    fakedata 
+    ];
+  data.__set__(data_in_rewired_module, this.testData); 
+});
+```
