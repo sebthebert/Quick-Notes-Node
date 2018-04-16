@@ -2,6 +2,54 @@
 
 Notes about Node.js
 
+## Linter - ESLint
+
+```
+npm install eslint -D
+```
+
+package.json
+```json
+  "scripts": {
+    ...
+    "eslint": "eslint",
+    ...
+  },
+```
+
+.eslintrc.js:
+```javascript
+module.exports = {
+    "parserOptions": {
+        "ecmaVersion": "6",
+        "sourceType": "module" 
+    },
+    "env": {
+        "node": true,
+        "es6": true
+    },
+    "rules": {
+        "no-multiple-empty-lines": "warn",
+        "no-var": "error",
+        "prefer-const": "error"
+    },
+    "extends": "eslint:recommended"
+};
+```
+
+Examples:
+  * https://github.com/standard/eslint-config-standard
+  * https://github.com/google/eslint-config-google
+
+
+https://eslint.org/docs/user-guide/configuring
+https://eslint.org/docs/developer-guide/shareable-configs
+
+.eslintignore.js:
+```javascript
+public/contrib/*
+```
+
 ## Node Core
 
 `process.argv`
