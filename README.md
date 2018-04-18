@@ -299,3 +299,14 @@ beforeEach(function() {
   data.__set__(data_in_rewired_module, this.testData); 
 });
 ```
+
+### Proxyquire
+
+```shell
+npm install proxyquire --save-dev
+```
+
+```node
+const proxyquire = require('proxyquire');
+const sinon = require('sinon');
+```
