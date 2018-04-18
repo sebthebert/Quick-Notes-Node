@@ -278,16 +278,16 @@ before(function() {
     .get(path)
     .reply(200, "Mock");
 });
-
+```
 
 ### Rewire
 
 Mocking data
-```
+```shell
 npm install rewire --save-dev
 ```
 
-```
+```node
 var rewire = require("rewire");
 
 var data = rewire("../lib/...");
