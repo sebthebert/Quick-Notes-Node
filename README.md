@@ -310,3 +310,13 @@ npm install proxyquire --save-dev
 const proxyquire = require('proxyquire');
 const sinon = require('sinon');
 ```
+
+## Functional Testing
+
+phantomjs.org
+casperjs.org
+nightwatchjs.org
+webdriver.io
+Chai HTTP (SuperAgent)
+
+cheerio.js.org
